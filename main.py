@@ -79,7 +79,7 @@ while True:
             while True:
                 menu.menu_despues_de_inicio()
                 eleccion = int(input("que desea realizar->"))
-                if 0 <= eleccion <= 8:
+                if 0 <= eleccion <= 9:
 
                     if eleccion == 0:
                         banco.ingresar_dinero_cuenta_ahorro(mi_usuario, int(input("Dinero a depositar->")))
@@ -99,5 +99,6 @@ while True:
                         banco.disolver_cuenta(mi_usuario)
                     elif eleccion == 8:
                         print(mi_usuario.historia)
-                    elif eleccion ==9:
+                    elif eleccion == 9:
                         break
+
