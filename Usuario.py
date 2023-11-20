@@ -68,7 +68,6 @@ class Usuario:
             self.mi_cuenta_grupal.inversion_usuarios[usuario] = 0
             usuario.cuentas_grupales.append(self._mi_cuenta_grupal)
 
-
     def solicitar_prestamo_grupo(self, cuenta_grupal, valor, plazo):
         if valor > cuenta_grupal.inversion_usuarios[self]:
             print("No puede pedir prestamo, ya que esta pidiendo mas dinero del que ha aportado...")
@@ -205,9 +204,5 @@ class Usuario:
     def historia(self, historia):
         self._historia = historia
 
-
-
-if __name__ == "__main__":
-    us = Usuario("adpda", "dadsa")
-    us.ingresar_dinero_cuenta_ahorro(232)
-    #print(us.cuenta_ahorros.valor)
+    def __repr__(self):
+        return f"{self.nombre_apellido}"

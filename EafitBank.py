@@ -20,7 +20,14 @@ class EafitBank:
         self._usuarios.append(usuario)
 
     def indetificar_usuarios_sobresalientes(self):
-        pass
+        mayor = 0
+        for i in self._cuentas_grupales:
+            for clave, valor in i.inversion_usuarios:
+                if valor > mayor:
+                    mayor = clave
+
+        mayor.porcentaje_mi_cuenta_grupal -= 0.01
+        mayor.porcentaje_otra_cuenta_grupal -= 0.01
 
     def acceder_cuenta(self, usuario, contrasena):
         for user in self._usuarios:
@@ -92,6 +99,7 @@ class EafitBank:
                 break
 
     def pedir_prestamo_mi_grupo(self, usuario, monto):
+        print("prestamo".center(50, "-"))
         plazo = int(input("Numero de meses a pagar -->"))
         if plazo > 2:
             grupos = {}
@@ -148,12 +156,7 @@ class EafitBank:
                 for j in i.cuentas_grupales:
                     if j == usuario.mi_cuenta_grupal:
                         i.cuentas_grupales.remove(j)
-
-
             usuario.mi_cuenta_grupal = None
-
-
-
         else:
             print("Todavia hay deudas!!")
 

@@ -7,18 +7,6 @@ class CuentaGrupal:
         self._inversion_usuarios = {dueno_cuenta: 0}
         self._deudas_del_grupo = {dueno_cuenta: [0,0]}  # [0]-> valor| [1]-> plazo
 
-    def estado_agregacion(self):
-        pass
-
-    def agregar_usuario(self, usuario):
-        pass
-
-    def comprobar_inversion(self, usuario):
-        pass
-
-    def pagar_al_disolver(self):
-        pass
-
     def imprimir_usuarios(self):
         x = 1
         for i in self._usuarios:
@@ -74,7 +62,20 @@ class CuentaGrupal:
         self._deudas_del_grupo = deudas_grupo
 
     def __str__(self):
+
         return (f"Dueno Cuenta = {self._dueno_cuenta.nombre_apellido}\n"
                 f"Nombre_grupo = {self._nombre_cuenta}\n"
                 f"Inversion = {self.inversion_usuarios}\n"
                 f"Deudas = {self.deudas_grupo}")
+
+    def __repr__(self):
+        dic = {}
+        dic2 = {}
+        for clave, valor in self.inversion_usuarios.items():
+            dic[clave.nombre_apellido] = valor
+        for clave, valor in self.deudas_grupo.items():
+            dic2[clave.nombre_apellido] = f"monto;{valor[0]}, meses{valor[1]}"
+        return (f"Dueno Cuenta = {self._dueno_cuenta.nombre_apellido}\n"
+                f"Nombre_grupo = {self._nombre_cuenta}\n"
+                f"Inversion = {dic}\n"
+                f"Deudas = {dic2}")
