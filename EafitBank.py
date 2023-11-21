@@ -21,13 +21,18 @@ class EafitBank:
 
     def indetificar_usuarios_sobresalientes(self):
         mayor = 0
+        us_mayor = None
         for i in self._cuentas_grupales:
-            for clave, valor in i.inversion_usuarios:
+            for clave, valor in i.inversion_usuarios.items():
                 if valor > mayor:
-                    mayor = clave
-
-        mayor.porcentaje_mi_cuenta_grupal -= 0.01
-        mayor.porcentaje_otra_cuenta_grupal -= 0.01
+                    mayor = valor
+                    us_mayor = clave
+            us_mayor.porcentaje_mi_cuenta -= 0.01
+            us_mayor.porcentaje_otras_cuentas_grupales -= 0.01
+            
+    def crear_cuenta_grupal(self, usuario, nombre_grupo):
+        usuario.crear_mi_grupo_de_ahorro(nombre_grupo)
+        self._cuentas_grupales.append(usuario.mi_cuenta_grupal)
 
     def acceder_cuenta(self, usuario, contrasena):
         for user in self._usuarios:

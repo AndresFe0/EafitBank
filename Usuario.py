@@ -33,14 +33,17 @@ class Usuario:
         self.agregar_historial_despues()
 
     def ingresar_dinero_mi_cuenta_grupal(self, valor):
-        self.agregar_historial_antes("Ingreso dinero a mi cuenta grupal", valor)
-        if self._cuenta_ahorros.valor > valor:
-            self._cuenta_ahorros.valor -= valor
-            self._mi_cuenta_grupal.valor += valor
-            self._mi_cuenta_grupal.inversion_usuarios[self] += valor
-            self.agregar_historial_despues()
+        if self._mi_cuenta_grupal is None:
+            print("no tiene cuenta, deberia crear una antes...")
         else:
-            print("No tiene dinero suficiente...")
+            if self._cuenta_ahorros.valor > valor:
+                self.agregar_historial_antes("Ingreso dinero a mi cuenta grupal", valor)
+                self._cuenta_ahorros.valor -= valor
+                self._mi_cuenta_grupal.valor += valor
+                self._mi_cuenta_grupal.inversion_usuarios[self] += valor
+                self.agregar_historial_despues()
+            else:
+                print("No tiene dinero suficiente...")
 
     def comprobar_si_hay_menos_dinero_que_valor(self, valor):
         if self._cuenta_ahorros.valor < valor:

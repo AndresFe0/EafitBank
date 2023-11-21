@@ -79,12 +79,12 @@ while True:
             while True:
                 menu.menu_despues_de_inicio()
                 eleccion = int(input("que desea realizar->"))
-                if 0 <= eleccion <= 9:
+                if 0 <= eleccion <= 10:
 
                     if eleccion == 0:
                         banco.ingresar_dinero_cuenta_ahorro(mi_usuario, int(input("Dinero a depositar->")))
                     elif eleccion == 1:
-                        mi_usuario.crear_mi_grupo_de_ahorro(input("Ingrese el nombre del grupo->"))
+                        banco.crear_cuenta_grupal(mi_usuario, input("Ingrese el nombre del grupo->"))
                     elif eleccion == 2:
                         banco.ingresar_dinero_otra_cuenta_grupal(mi_usuario, int(input("Ingrese el monto que desea meter en una cuenta de grupo->")))
                     elif eleccion == 3:
@@ -100,5 +100,8 @@ while True:
                     elif eleccion == 8:
                         print(mi_usuario.historia)
                     elif eleccion == 9:
+                        banco.indetificar_usuarios_sobresalientes()
+                        print(f'Nuevos porcentajes de comision por tus contribuciones: \nporcentaje mi cuenta grupal {mi_usuario.porcentaje_mi_cuenta}\nporcentaje de otras cuentas grupal {mi_usuario.porcentaje_otras_cuentas_grupales}')
+                    elif eleccion == 10:
                         break
 
